@@ -11,6 +11,8 @@ void dump (void *p, int n) {
  p1++;
  }
 }
+
+
 int main() {
  int num = 0x01020304;
 dump(&num, sizeof(int));
