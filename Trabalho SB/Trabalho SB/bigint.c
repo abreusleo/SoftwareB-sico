@@ -41,6 +41,32 @@ void big_val(BigInt res, long val) {
 }
 
 */
+/*TESTAR ESSA AQUI ACHO Q FUNCIONA
+
+void big_val(BigInt res, long val) {
+	unsigned char *p1 = &val;
+	unsigned int a = 0;
+	unsigned int k = 8;
+	int n = sizeof(val);
+
+	while (n--) {
+		res[a] = *p1;
+		a++;
+		p1++;
+	}
+	
+    while (k<NUM_BYTES){
+		res[k] = 0;
+		k++;
+	}
+	return;
+}
+
+
+
+*/
+
+
 
 //BIG_VAL MODELO (funcionando)
 void big_val(BigInt res, long val) {
