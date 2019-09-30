@@ -1,4 +1,4 @@
-//JOÃO MARCELLO BESSA RODRIGUES - 1720539 - 3WA
+//JOÃƒO MARCELLO BESSA RODRIGUES - 1720539 - 3WA
 //LEONARDO DOS SANTOS ABREU - 1720565 - 3WB
 
 
@@ -18,9 +18,12 @@ void dump(void *p, int n) {
 
 /* Principais */
 
+/*
+-----------------------SUA BIG_VAL----------------------
+(não consegui fazer o teste com ela)
+
 void big_val(BigInt res, long val) {
 
-	/* p recebe o endere�o do long val e percorre os bytes copiando o valor do mesmo para o BigInt*/
 	unsigned char *p = &val;
 	int n = 0;
 
@@ -36,6 +39,27 @@ void big_val(BigInt res, long val) {
 	}
 	return;
 }
+
+*/
+
+//BIG_VAL MODELO (funcionando)
+void big_val(BigInt res, long val) {
+   
+	unsigned char *p = (unsigned char *) &val, mask = 0x1 << 7, rest = 0;
+	int n = 0;
+	while(n < 8) {
+		res[n] = *p;
+		n++;
+		p++;
+	}
+	if (res[7] & mask)
+		rest = 0xFF;
+	
+	for (; n < 16; n++)
+		res[n] = rest;
+    return;
+}
+
 
 void big_sum(BigInt res, BigInt a, BigInt b) {
 	unsigned char soma, vaiUm = 0;
