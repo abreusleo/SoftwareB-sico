@@ -18,6 +18,9 @@
     <ClCompile Include="bigint.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="teste.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bigint.h">
