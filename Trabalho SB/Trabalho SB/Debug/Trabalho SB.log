@@ -1,4 +1,6 @@
 ﻿  bigint.c
+c:\users\joaom\onedrive\documentos\trabalho sb\repositorio\ssebudo\trabalho sb\trabalho sb\bigint.c(24): warning C4133: 'inicializando': tipos incompatíveis - de 'long *' para 'unsigned char *'
+c:\users\joaom\onedrive\documentos\trabalho sb\repositorio\ssebudo\trabalho sb\trabalho sb\bigint.c(47): warning C4333: '>>': right shift por valor muito grande, perda de dados
   teste.c
   Gerando Código...
   Trabalho SB.vcxproj -> C:\Users\joaom\OneDrive\Documentos\Trabalho SB\repositorio\ssebudo\Trabalho SB\Debug\Trabalho SB.exe

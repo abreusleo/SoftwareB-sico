@@ -1,6 +1,10 @@
 #define NUM_BITS 128
 typedef unsigned char BigInt[NUM_BITS/8];
 
+/*Auxiliares*/
+
+void dump (void *p, int n);
+
 /* Atribuicao */
 
 /* res = val (extensao com sinal) */
