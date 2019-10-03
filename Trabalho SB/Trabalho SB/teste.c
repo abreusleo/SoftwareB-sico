@@ -15,16 +15,27 @@ int main(void) {
 	return 0;
 }
 */
+void print_bigInt(BigInt res) {
+	int i = 15;
+
+	while(i--)
+		printf("%02x", res[i]);
+	printf("\n\n");
+}
+
 
 int main(void) {
- long val1 = 8;
-    BigInt a;
+	long val1 = 1, val2 = 2;
+    BigInt a, b, res;
 
     big_val(a, val1);
+	big_val(b, val2);
+	big_comp2(res, a);
 
-    printf("Valor da dump usando big_val: %016lx\n", val1);
-    printf("Função dump normal:\n");	
-    dump(a, 16);
+	print_bigInt(a);
+	print_bigInt(b);
+	print_bigInt(res);
+
 
     return 0;
 }

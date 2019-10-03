@@ -1,9 +1,9 @@
-//JOÃƒO MARCELLO BESSA RODRIGUES - 1720539 - 3WA
+//JOÃO MARCELLO BESSA RODRIGUES - 1720539 - 3WA
 //LEONARDO DOS SANTOS ABREU - 1720565 - 3WB
 
-
-#include "bigint.h"
 #include <stdio.h>
+#include "bigint.h"
+
 
 
 /* Auxiliares */
@@ -18,9 +18,9 @@ void dump(void *p, int n) {
 
 /* Principais */
 
-/*
------------------------SUA BIG_VAL----------------------
-(não consegui fazer o teste com ela)
+
+/*-----------------------SUA BIG_VAL----------------------
+(não consegui fazer o teste com ela)*/
 
 void big_val(BigInt res, long val) {
 
@@ -38,52 +38,6 @@ void big_val(BigInt res, long val) {
 		n++;
 	}
 	return;
-}
-
-*/
-/*TESTAR ESSA AQUI ACHO Q FUNCIONA
-
-void big_val(BigInt res, long val) {
-	unsigned char *p1 = &val;
-	unsigned int a = 0;
-	unsigned int k = 8;
-	int n = sizeof(val);
-
-	while (n--) {
-		res[a] = *p1;
-		a++;
-		p1++;
-	}
-	
-    while (k<NUM_BYTES){
-		res[k] = 0;
-		k++;
-	}
-	return;
-}
-
-
-
-*/
-
-
-
-//BIG_VAL MODELO (funcionando)
-void big_val(BigInt res, long val) {
-   
-	unsigned char *p = (unsigned char *) &val, mask = 0x1 << 7, rest = 0;
-	int n = 0;
-	while(n < 8) {
-		res[n] = *p;
-		n++;
-		p++;
-	}
-	if (res[7] & mask)
-		rest = 0xFF;
-	
-	for (; n < 16; n++)
-		res[n] = rest;
-    return;
 }
 
 
