@@ -127,3 +127,27 @@ void big_shl(BigInt res, BigInt a, int n)
 
 	return;
 }
+
+void big_shr(BigInt res, BigInt a, int n) {
+	int i, aux = n % 8, shifter = 0;
+	BigInt temp;
+
+	if (aux != 0) {
+		
+		for(i = (NUM_BITS / 8) - 1; i >= 0; i--)
+			temp[i] = a[i] >> aux;
+			temp[i] = temp[i] || shifter;
+			shifter = a[i] << (8 - aux);
+	}
+	else
+		big_copy(temp, a);
+
+	for (i = 0; i < NUM_BITS / 8; i++) {
+		if (i + (n / 8) < NUM_BITS / 8)
+			res[i] = temp[i + (n / 8)];
+		else
+			res[i] = 0;
+	}
+	return;
+}
+	

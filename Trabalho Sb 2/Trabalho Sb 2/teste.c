@@ -19,21 +19,19 @@ void print_bigInt(BigInt res) {
 	int i = 16;
 
 	while(i--)
-		printf("%02x", res[i]);
+		printf("%02x ", res[i]);
 	printf("\n\n");
 }
 
 
 int main(void) {
-	long val1 = 16, val2 = 2;
+	long val1 = 4095, n = 8;
     BigInt a, b, res;
 
     big_val(a, val1);
-	big_val(b, val2);
-	big_comp2(res, a);
+	big_shr(res, a, n);
 
-	print_bigInt(a);
-	print_bigInt(b);
+
 	print_bigInt(res);
 
 
