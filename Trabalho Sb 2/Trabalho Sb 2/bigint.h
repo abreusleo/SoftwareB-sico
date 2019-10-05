@@ -4,6 +4,8 @@ typedef unsigned char BigInt[NUM_BITS/8];
 /*Auxiliares*/
 
 void dump (void *p, int n);
+void big_copy(BigInt res, BigInt a);
+void print_bigInt(BigInt res) ;
 
 /* Atribuicao */
 

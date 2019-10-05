@@ -23,6 +23,14 @@ void big_copy(BigInt res, BigInt a) {
 	return;
 }
 
+void print_bigInt(BigInt res) {
+	int i = 16;
+
+	while(i--)
+		printf("%02x ", res[i]);
+	printf("\n\n");
+}
+
 /* Principais */
 
 
@@ -129,8 +137,7 @@ void big_shl(BigInt res, BigInt a, int n)
 }
 
 void big_shr(BigInt res, BigInt a, int n) {
-	int i, aux = n % 8;
-	unsigned char shifter = 0;
+	int i, aux = n % 8, shifter = 0;
 	BigInt temp;
 
 	if (aux != 0)

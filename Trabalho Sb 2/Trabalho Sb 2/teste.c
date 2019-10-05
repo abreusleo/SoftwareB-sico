@@ -15,21 +15,13 @@ int main(void) {
 	return 0;
 }
 */
-void print_bigInt(BigInt res) {
-	int i = 16;
-
-	while(i--)
-		printf("%02x ", res[i]);
-	printf("\n\n");
-}
-
 
 int main(void) {
-	long val1 = 4095, n = 7;
+	long val1 = 1, n = 1;
     BigInt a, b, res;
 
     big_val(a, val1);
-	big_shr(res, a, n);
+	big_shl(res, a, n);
 
 
 	print_bigInt(res);
