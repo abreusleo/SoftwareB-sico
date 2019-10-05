@@ -25,7 +25,7 @@ void print_bigInt(BigInt res) {
 
 
 int main(void) {
-	long val1 = 4095, n = 8;
+	long val1 = 4095, n = 7;
     BigInt a, b, res;
 
     big_val(a, val1);

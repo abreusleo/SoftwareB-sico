@@ -129,16 +129,17 @@ void big_shl(BigInt res, BigInt a, int n)
 }
 
 void big_shr(BigInt res, BigInt a, int n) {
-	int i, aux = n % 8, shifter = 0;
+	int i, aux = n % 8;
+	unsigned char shifter = 0;
 	BigInt temp;
 
-	if (aux != 0) {
-		
-		for(i = (NUM_BITS / 8) - 1; i >= 0; i--)
-			temp[i] = a[i] >> aux;
-			temp[i] = temp[i] || shifter;
+	if (aux != 0)
+		for(i = NUM_BITS / 8 - 1; i >= 0; i--) {
+			temp[i] = a[i];
+			temp[i] = temp[i] >> aux;
+			temp[i] |= shifter;
 			shifter = a[i] << (8 - aux);
-	}
+		}
 	else
 		big_copy(temp, a);
 
