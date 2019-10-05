@@ -1,12 +1,11 @@
-﻿Build started 05/10/2019 15:24:00.
+﻿Build started 05/10/2019 17:55:52.
      1>Project "C:\Users\joaom\OneDrive\Documentos\Trabalho SB\repositorio\ssebudo\Trabalho Sb 2\Trabalho Sb 2\Trabalho Sb 2.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\Trabalho Sb 2.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt bigint.c teste.c
          teste.c
-     1>c:\users\joaom\onedrive\documentos\trabalho sb\repositorio\ssebudo\trabalho sb 2\trabalho sb 2\teste.c(28): warning C4013: 'print_bigInt' undefined; assuming extern returning int
-     1>c:\users\joaom\onedrive\documentos\trabalho sb\repositorio\ssebudo\trabalho sb 2\trabalho sb 2\teste.c(22): warning C4101: 'b' : unreferenced local variable
+     1>c:\users\joaom\onedrive\documentos\trabalho sb\repositorio\ssebudo\trabalho sb 2\trabalho sb 2\teste.c(8): warning C4101: 'b' : unreferenced local variable
          bigint.c
      1>c:\users\joaom\onedrive\documentos\trabalho sb\repositorio\ssebudo\trabalho sb 2\trabalho sb 2\bigint.c(66): warning C4333: '>>' : right shift by too large amount, data loss
          Generating Code...
@@ -29,4 +28,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.98
+Time Elapsed 00:00:01.00

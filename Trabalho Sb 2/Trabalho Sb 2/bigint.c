@@ -158,4 +158,53 @@ void big_shr(BigInt res, BigInt a, int n) {
 	}
 	return;
 }
-	
+
+void big_sar(BigInt res, BigInt a, int n) {
+	int i, aux = n % 8, shifter = 0, bitMS;
+	BigInt temp;
+
+	if (aux != 0)
+		for(i = NUM_BITS / 8 - 1; i >= 0; i--) {
+			temp[i] = a[i];
+			temp[i] = temp[i] >> aux;
+			temp[i] |= shifter;
+			shifter = a[i] << (8 - aux);
+		}
+	else
+		big_copy(temp, a);
+
+	bitMS = a[NUM_BITS/8 - 1] >> 7;
+
+	for (i = 0; i < NUM_BITS / 8; i++) {
+		if (i + (n / 8) < NUM_BITS / 8)
+			res[i] = temp[i + (n / 8)];
+		else
+			res[i] = 0;
+	}
+	return;
+}
+
+void big_mul(BigInt res, BigInt a, BigInt b) {
+
+    unsigned char ehImpar = 0x1;
+    BigInt num1, num2;
+    int i;
+    /* Cria 2 valores auxiliares para não alterar os valores originais de a e b */
+    big_copy(num1, a);
+    big_copy(num2, b);
+
+    /* Inicializa res com 0. Não há problema caso (res = a) ou (res = b) pois os valores das duas foram armazenadas nas auxiliares anteriormente */
+    big_val(res, 0);
+
+
+    for(i = 0; i < NUM_BITS/8; i++) {
+        while (num2[i]) {
+            if (num2[0] & ehImpar)
+                big_sum(res, res, num1);
+            big_shl(num1, num1, 1);
+            big_shr(num2, num2, 1);
+        }
+    }
+    return;
+}
+
