@@ -1,4 +1,4 @@
-//JO√O MARCELLO BESSA RODRIGUES - 1720539 - 3WA
+//JO√ÉO MARCELLO BESSA RODRIGUES - 1720539 - 3WA
 //LEONARDO DOS SANTOS ABREU - 1720565 - 3WB
 
 #include <stdio.h>
@@ -35,7 +35,7 @@ void print_bigInt(BigInt res) {
 
 
 /*-----------------------SUA BIG_VAL----------------------
-(n„o consegui fazer o teste com ela)*/
+(n√£o consegui fazer o teste com ela)*/
 
 void big_val(BigInt res, long val) {
 
@@ -103,10 +103,10 @@ void big_shl(BigInt res, BigInt a, int n)
 
 	BigInt temp;
 	
-	//Usei de exemplo um cÛdigo, ele chamou isso de subshift(Fiquei meio na duvida, ve se vc entende)
+	//Usei de exemplo um c√≥digo, ele chamou isso de subshift(Fiquei meio na duvida, ve se vc entende)
 	if(n % 8 != 0)
 	{
-		//Se n n„o for multiplo de 8, shifta pra esquerda n%8 e depois ajusta o n
+		//Se n n√£o for multiplo de 8, shifta pra esquerda n%8 e depois ajusta o n
 		for(i = 0; i < NUM_BITS/8; i++)
 		{
 			temp[i] = (a[i] << n%8) + shifter;
@@ -119,7 +119,7 @@ void big_shl(BigInt res, BigInt a, int n)
 		big_copy(temp, a);
 	}
 
-	//N È multiplo de 8 agora
+	//N √© multiplo de 8 agora
 	for(i = 0 ; i < NUM_BITS/8; i++)
 	{
 		if(i - (n/8) >= 0)
@@ -160,26 +160,41 @@ void big_shr(BigInt res, BigInt a, int n) {
 }
 
 void big_sar(BigInt res, BigInt a, int n) {
-	int i, aux = n % 8, shifter = 0, bitMS;
+	int i, aux = n % 8, shifter = 0, byteFF;
 	BigInt temp;
 
-	if (aux != 0)
+	if (aux != 0) {
 		for(i = NUM_BITS / 8 - 1; i >= 0; i--) {
-			temp[i] = a[i];
-			temp[i] = temp[i] >> aux;
-			temp[i] |= shifter;
-			shifter = a[i] << (8 - aux);
+		    
+		    if(a[NUM_BITS/8 - 1] >> 7 == 0)
+		    {
+    			temp[i] = a[i];
+    			temp[i] = temp[i] >> aux;
+    			temp[i] |= shifter;
+    			shifter = a[i] << (8 - aux);
+		    } 
+		    else
+		    {
+		        temp[i] = a[i];
+    			temp[i] |= shifter;
+    			shifter = a[i] << (8 - aux); 
+		    }
 		}
+	}
 	else
 		big_copy(temp, a);
 
-	bitMS = a[NUM_BITS/8 - 1] >> 7;
 
-	for (i = 0; i < NUM_BITS / 8; i++) {
+	if (a[NUM_BITS/8 - 1] >> 7 != 0)
+		byteFF = (-a[NUM_BITS/8 - 1] >> 7) + 1;
+	else
+		byteFF = a[NUM_BITS/8 - 1] >> 7;
+
+	for (i = 0; i <= NUM_BITS / 8; i++) {
 		if (i + (n / 8) < NUM_BITS / 8)
 			res[i] = temp[i + (n / 8)];
 		else
-			res[i] = 0;
+			res[i] = byteFF;
 	}
 	return;
 }
@@ -189,13 +204,12 @@ void big_mul(BigInt res, BigInt a, BigInt b) {
     unsigned char ehImpar = 0x1;
     BigInt num1, num2;
     int i;
-    /* Cria 2 valores auxiliares para n„o alterar os valores originais de a e b */
+    /* Cria 2 valores auxiliares para n√£o alterar os valores originais de a e b */
     big_copy(num1, a);
     big_copy(num2, b);
 
-    /* Inicializa res com 0. N„o h· problema caso (res = a) ou (res = b) pois os valores das duas foram armazenadas nas auxiliares anteriormente */
+    /* Inicializa res com 0. N√£o h√° problema caso (res = a) ou (res = b) pois os valores das duas foram armazenadas nas auxiliares anteriormente */
     big_val(res, 0);
-
 
     for(i = 0; i < NUM_BITS/8; i++) {
         while (num2[i]) {
@@ -207,4 +221,3 @@ void big_mul(BigInt res, BigInt a, BigInt b) {
     }
     return;
 }
-
