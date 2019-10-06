@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include "bigint.h"
 
-#include <stdio.h>
-#include "bigint.h"
+void print_bigInt(BigInt res) {
+	int i = 16;
+
+	while(i--)
+		printf("%02x ", res[i]);
+	printf("\n\n");
+}
+
 
 int main(void) {
     
