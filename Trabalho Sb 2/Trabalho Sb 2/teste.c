@@ -177,7 +177,7 @@ int main(void) {
     printf("\n------------------------------------------------\n");
     
             
-     /*- Shift Lógico de BigInts para a direita -*/
+     /*- Shift artmetico de BigInts para a direita -*/
     big_sar(sarA, bigA, 8);
     big_sar(sarB, compA, 26);
     big_sar(sarC, compC, 1);
