@@ -9,7 +9,7 @@
 void dump(void *p, int n) {
 	unsigned char *p1 = (unsigned char *)p;
 	while (n--) {
-		printf("%p - %02x\n", p1, *p1);
+		printf("%p - %02x\n", p1, *p1); /*Printa o endereco de memoria junto com um byte*/
 		p1++;
 	}
 	printf("\n");
@@ -19,7 +19,7 @@ void big_copy(BigInt res, BigInt a) {
 	int i;
 
 	for (i = 0; i < NUM_BITS/8; i++)
-		res[i] = a[i];
+		res[i] = a[i]; /*Copia o BigInt a bit a bit*/
 	return;
 }
 
@@ -27,15 +27,11 @@ void print_bigInt(BigInt res) {
 	int i = 16;
 
 	while(i--)
-		printf("%02x ", res[i]);
+		printf("%02x ", res[i]); /*Printa byte por byte do BigInt*/
 	printf("\n\n");
 }
 
 /* Principais */
-
-
-/*-----------------------SUA BIG_VAL----------------------
-(não consegui fazer o teste com ela)*/
 
 void big_val(BigInt res, long val) {
 
@@ -43,13 +39,13 @@ void big_val(BigInt res, long val) {
 	int n = 0;
 
 	while (n < 8) { 
-		res[n] = *p;
+		res[n] = *p; /*preenchimento de bits*/
 		n++;
 		p++;
 	} 
 
 	while (n < NUM_BITS / 8) {
-		res[n] = 0;
+		res[n] = 0;	/*preenchimento de bytes*/
 		n++;
 	}
 	return;
@@ -61,14 +57,14 @@ void big_sum(BigInt res, BigInt a, BigInt b) {
 	int i;
 
 	for (i = 0; i < (NUM_BITS/8); i++) {
-		soma = a[i] + b[i] + vaiUm;
-		if (soma > 0xFF)
-			vaiUm = soma >> 8;
+		soma = a[i] + b[i] + vaiUm;	/*O vaiUm funciona de maneira semelhante a soma de numeros decimais*/
+		if (soma > 0xFF)		
+			vaiUm = soma >> 8;	/*Atribuicao do valor de vaiUm, para o proximo loop*/
 		else
-			vaiUm = 0;
+			vaiUm = 0;		
 
-		res[i] = soma;
-	}
+		res[i] = soma;			
+	}	
 
 	return;
 }
@@ -78,20 +74,20 @@ void big_comp2(BigInt res, BigInt a) {
 	BigInt soma_1;
 
 	for (i = 0; i < (NUM_BITS/8); i++) {
-		res[i] = ~a[i];
+		res[i] = ~a[i];			/*Inverte os bits do numero*/
 	}
 
 	big_val(soma_1, 1);
-	big_sum(res, res, soma_1);
+	big_sum(res, res, soma_1);		/*Soma um no bit menos significativo para terminar a troca de sinal*/
 
 	return;
 }
 
 void big_sub(BigInt res, BigInt a, BigInt b) {
-	BigInt neg;   /* neg = -b -> complemento a 2 */
+	BigInt neg;
 
-	big_comp2(neg, b);
-	big_sum(res, a, neg);
+	big_comp2(neg, b);	/* neg = (-b) */
+	big_sum(res, a, neg);	/* a + (-b) = a - b */
 
 	return;
 }
@@ -103,13 +99,12 @@ void big_shl(BigInt res, BigInt a, int n)
 
 	BigInt temp;
 	
-	//Usei de exemplo um código, ele chamou isso de subshift(Fiquei meio na duvida, ve se vc entende)
 	if(n % 8 != 0)
 	{
-		//Se n não for multiplo de 8, shifta pra esquerda n%8 e depois ajusta o n
+		/* Se n não for multiplo de 8, shifta pra esquerda n%8 e depois ajusta o n */
 		for(i = 0; i < NUM_BITS/8; i++)
 		{
-			temp[i] = (a[i] << n%8) + shifter;
+			temp[i] = (a[i] << n%8) + shifter;	/* O shifter funciona de maneira parecida com o vaiUm da soma */
 			shifter = a[i] >> (8-(n%8));
 		}
 		n = n - (n%8);
@@ -119,8 +114,8 @@ void big_shl(BigInt res, BigInt a, int n)
 		big_copy(temp, a);
 	}
 
-	//N é multiplo de 8 agora
-	for(i = 0 ; i < NUM_BITS/8; i++)
+	/* n é multiplo de 8 agora */
+	for(i = 0 ; i < NUM_BITS/8; i++)		/*Essa parte do shift funciona para bytes completos*/
 	{
 		if(i - (n/8) >= 0)
 		{
@@ -141,16 +136,18 @@ void big_shr(BigInt res, BigInt a, int n) {
 	BigInt temp;
 
 	if (aux != 0)
-		for(i = NUM_BITS / 8 - 1; i >= 0; i--) {
+		/* Shift bit a bit */
+		for(i = NUM_BITS / 8 - 1; i >= 0; i--) {	
 			temp[i] = a[i];
-			temp[i] = temp[i] >> aux;
+			temp[i] = temp[i] >> aux;		/* Serve para preencher os bits com zeros */
 			temp[i] |= shifter;
 			shifter = a[i] << (8 - aux);
 		}
+	/* Caso n seja multiplo de 8 utiliza-se um auxiliar para shiftar os bytes */
 	else
-		big_copy(temp, a);
-
-	for (i = 0; i < NUM_BITS / 8; i++) {
+		big_copy(temp, a);		
+	/* Shift de byte em byte */
+	for (i = 0; i < NUM_BITS / 8; i++) {	
 		if (i + (n / 8) < NUM_BITS / 8)
 			res[i] = temp[i + (n / 8)];
 		else
@@ -165,15 +162,16 @@ void big_sar(BigInt res, BigInt a, int n) {
 
 	if (aux != 0) {
 		for(i = NUM_BITS / 8 - 1; i >= 0; i--) {
-		    
-		    if(a[NUM_BITS/8 - 1] >> 7 == 0)
+		    /* Se bitMaisSignificativo = 0, o shift funciona da memsa maneira que o logico */
+		    if(a[NUM_BITS/8 - 1] >> 7 == 0)	
 		    {
     			temp[i] = a[i];
     			temp[i] = temp[i] >> aux;
     			temp[i] |= shifter;
     			shifter = a[i] << (8 - aux);
 		    } 
-		    else
+		    /* Caso contrario o auxiliar nao eh necessario, por isso completara com 1 */
+		    else				
 		    {
 		        temp[i] = a[i];
     			temp[i] |= shifter;
@@ -184,13 +182,16 @@ void big_sar(BigInt res, BigInt a, int n) {
 	else
 		big_copy(temp, a);
 
-
+	/* ByteFF sempre será FF qnd bitMaisSignificativo = 1 */
 	if (a[NUM_BITS/8 - 1] >> 7 != 0)
-		byteFF = (-a[NUM_BITS/8 - 1] >> 7) + 1;
+		byteFF = (-a[NUM_BITS/8 - 1] >> 7) + 1;		
+	
+	/* Caso contrário bitMaisSignificativo = 0*/
 	else
-		byteFF = a[NUM_BITS/8 - 1] >> 7;
+		byteFF = a[NUM_BITS/8 - 1] >> 7;		
 
-	for (i = 0; i <= NUM_BITS / 8; i++) {
+	/* Shifta os bytes de acordo com o valor byteFF */
+	for (i = 0; i <= NUM_BITS / 8; i++) {			
 		if (i + (n / 8) < NUM_BITS / 8)
 			res[i] = temp[i + (n / 8)];
 		else
