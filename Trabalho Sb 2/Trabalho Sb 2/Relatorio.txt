@@ -1,0 +1,141 @@
+JOÃO MARCELLO BESSA RODRIGUES - 1720539 - 3WA
+LEONARDO DOS SANTOS ABREU - 1720565 - 3WB
+
+Relatório:
+
+void big_val (BigInt res, long val):
+
+Testes realizados:
+
+A- 25164
+B- 1
+C- 500
+D- 9000
+
+Resultados esperados:
+A- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 62 4c
+B- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+C- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 f4
+D- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 23 28
+
+Os resultados esperados coincidiram com os resultados da aplicação.
+
+
+void big_comp2(BigInt res, BigInt a):
+
+Testes realizados:
+1- Complemento 2 a 2 de A
+2- Complemento 2 a 2 de B
+3- Complemento 2 a 2 de C
+4- Complemento 2 a 2 de D
+
+Resultados esperados:
+
+1- ff ff ff ff ff ff ff ff ff ff ff ff ff ff 9d b4
+2- ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+3- ff ff ff ff ff ff ff ff ff ff ff ff ff ff fe 0c
+4- ff ff ff ff ff ff ff ff ff ff ff ff ff ff dc db
+
+Os resultados esperados coincidiram com os resultados da aplicação.
+
+
+void big_sum(BigInt res, BigInt a, BigInt b):
+
+Testes realizados:
+1- Soma A + B
+2- Soma B + C
+3- Soma B + B
+
+Resultados esperados:
+
+1- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 62 4d
+2- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 f5
+3- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02
+
+Os resultados esperados coincidiram com os resultados da aplicação.
+
+
+void big_sub(BigInt res, BigInt a, BigInt b):
+
+Testes realizados:
+1- Soma A - B
+2- Soma A - A
+3- Soma C - A
+
+Resultados esperados:
+
+1- ff ff ff ff ff ff ff ff ff ff ff ff ff ff 61 4b
+2- ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff 00
+3- ff ff ff ff ff ff ff ff ff ff ff ff ff ff 9e a8
+
+Os resultados esperados coincidiram com os resultados da aplicação.
+
+
+void big_mul(BigInt res, BigInt a, BigInt b):
+
+Testes realizados:
+1- Multiplicacao A * B
+2- Multiplicacao A * A
+3- Multiplicacao C * A
+
+Resultados esperados:
+
+1- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 62 4c
+2- 00 00 00 00 00 00 00 00 00 00 00 00 24 bc 46 90
+3- 00 00 00 00 00 00 00 00 00 00 00 00 00 be fb 70
+
+Os resultados esperados coincidiram com os resultados da aplicação.
+
+
+void big_shl(BigInt res, BigInt a, int n):
+
+Testes realizados:
+1- A << 8
+2- A << 11 
+3- C << 16
+4- C << 7
+
+Resultados esperados:
+
+1- 00 00 00 00 00 00 00 00 00 00 00 00 00 62 4c 00
+2- 00 00 00 00 00 00 00 00 00 00 00 03 12 bc 60 00
+3- 00 00 00 00 00 00 00 00 00 00 00 00 01 f4 00 00
+4- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 fa 00
+
+Os resultados esperados coincidiram com os resultados da aplicação.
+
+
+void big_shr(BigInt res, BigInt a, int n):
+
+Testes realizados:
+1- A >> 16
+2- A >> 3
+3- D >> 8
+4- D >> 21
+
+Resultados esperados:
+
+1- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+2- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0c 49
+3- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 23
+4- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+Os resultados esperados coincidiram com os resultados da aplicação.
+
+
+void big_sar(BigInt res, BigInt a, int n):
+
+Testes realizados:
+1- Aritmético A >> 8
+2- Aritmético -A >> 26
+3- Aritmético -C >> 1
+4- Aritmético D >> 6
+
+Resultados esperados:
+
+1- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 62
+2- ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+3- ff ff ff ff ff ff ff ff ff ff ff ff ff ff fe 0c
+4- 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 8c
+
+Os resultados esperados coincidiram com os resultados da aplicação.
