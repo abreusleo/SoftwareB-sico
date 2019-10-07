@@ -12,7 +12,7 @@ void print_bigInt(BigInt res) {
 
 int main(void) {
     
-    long numA = 1000000, numB = 1, numC = 1000, numD = 5000;
+    long numA = 25164, numB = 1, numC = 500, numD = 9000;
     
     BigInt bigA, bigB, bigC, bigD; /*BigInts*/
     BigInt compA, compB, compC, compD; /*Complementos*/
