@@ -11,14 +11,14 @@ void libera_func(void *func) {
 	free(func);	
 }
 
-boolean check_ptr(int i)
+bool check_ptr(int i)
 {
-	return params[i].tipo_val = PTR_PAR;
+	return params[i].tipo_val == PTR_PAR;
 }
 
-boolean check_param(int i)
+bool check_param(int i)
 {
-	return params[i].orig_val = PARAM;
+	return params[i].orig_val == PARAM;
 }
 
 void* cria_func (void* f, DescParam params[], int n) {
