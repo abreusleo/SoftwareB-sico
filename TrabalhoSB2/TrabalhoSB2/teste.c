@@ -41,85 +41,91 @@ void* cria_func (void* f, DescParam params[], int n) {
 	switch(n)
 	{
 		case(2):
-		if(!check_param(0) && check_param(1)) //Primeiro parametro Amarrado e o segundo não Amarrado
-		{
-			if(check_ptr(1))
+			if(!check_param(0) && check_param(1)) //Primeiro parametro Amarrado e o segundo não Amarrado
 			{
-				codigo[i] = 0x48;
+				if(check_ptr(1))
+				{
+					codigo[i] = 0x48;
+					i++;
+				}
+
+				codigo[i] = 0x89;
+				i++;
+				codigo[i] = 0xfe;
 				i++;
 			}
-
-			codigo[i] = 0x89;
-			i++;
-			codigo[i] = 0xfe;
-			i++;
-		}
 		break;
 
 		case(3):
-		if(check_param(0) && !check_param(1) && check_param(2)) //Primeiro caso
-		{
-			if(check_ptr(2))
+			if(check_param(0) && !check_param(1) && check_param(2)) //Primeiro caso
 			{
-				codigo[i] = 0x48;
+				if(check_ptr(2))
+				{
+					codigo[i] = 0x48;
+					i++;
+				}
+				codigo[i] = 0x89;
+				i++;
+				codigo[i] = 0xf2;
 				i++;
 			}
-			codigo[i] = 0x89;
-			i++;
-			codigo[i] = 0xf2;
-			i++;
-		}
 
-		else if(!check_param(0) && check_param(1) && !check_param(2))
-		{
-			if(check_ptr(2))
+			else if(!check_param(0) && check_param(1) && !check_param(2))
 			{
-				codigo[i] = 0x48;
+				if(check_ptr(2))
+				{
+					codigo[i] = 0x48;
+					i++;
+				}
+				codigo[i] = 0x89;
+				i++;
+				codigo[i] = 0xfe;
 				i++;
 			}
-			codigo[i] = 0x89;
-			i++;
-			codigo[i] = 0xfe;
-			i++;
-		}
 
-		else if(!check_param(0) && !check_param(1) && check_param(2))
-		{
-			if(check_ptr(2))
+			else if(!check_param(0) && !check_param(1) && check_param(2))
 			{
-				codigo[i] = 0x48;
+				if(check_ptr(2))
+				{
+					codigo[i] = 0x48;
+					i++;
+				}
+				codigo[i] = 0x89;
+				i++;
+				codigo[i] = 0xfa;
 				i++;
 			}
-			codigo[i] = 0x89;
-			i++;
-			codigo[i] = 0xfa;
-			i++;
-		}
 
-		else if(!check_param(0) && check_param(1) && check_param(2))
-		{
-			if(check_ptr(2))
+			else if(!check_param(0) && check_param(1) && check_param(2))
 			{
-				codigo[i] = 0x48;
+				if(check_ptr(2))
+				{
+					codigo[i] = 0x48;
+					i++;
+				}
+				codigo[i] = 0x89;
 				i++;
-			}
-			codigo[i] = 0x89;
-			i++;
-			codigo[i] = 0xf2;
-			i++;
+				codigo[i] = 0xf2;
+				i++;
 
-			if(check_ptr(1))
-			{
-				codigo[i] = 0x48;
+				if(check_ptr(1))
+				{
+					codigo[i] = 0x48;
+					i++;
+				}
+				codigo[i] = 0x89;
+				i++;
+				codigo[i] = 0xfe;
 				i++;
 			}
-			codigo[i] = 0x89;
-			i++;
-			codigo[i] = 0xfe;
-			i++;
-		}
+		break;
+		
+		default:
+			printf("Aconteceu algo inesperado.\n");
+		break;
 	}
 
+	
 
 	for (cont = 0; cont < 2; cont++, i++)
 		codigo[i] = leave[cont]; //desfazendo o registro de ativação (leave)
