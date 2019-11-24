@@ -16,7 +16,7 @@ bool check_ptr(int i, DescParam * params)
 	return params[i].tipo_val == PTR_PAR;
 }
 
-bool check_param(int i)
+bool check_param(int i, DescParam * params)
 {
 	return params[i].orig_val == PARAM;
 }
@@ -41,7 +41,7 @@ void* cria_func (void* f, DescParam params[], int n) {
 	switch(n)
 	{
 		case(2):
-			if(!check_param(0) && check_param(1)) //Primeiro parametro Amarrado e o segundo não Amarrado
+			if(!check_param(0, params) && check_param(1, params)) //Primeiro parametro Amarrado e o segundo não Amarrado
 			{
 				if(check_ptr(1, params))
 				{
@@ -57,7 +57,7 @@ void* cria_func (void* f, DescParam params[], int n) {
 		break;
 
 		case(3):
-			if(check_param(0) && !check_param(1) && check_param(2)) //Primeiro caso
+			if(check_param(0, params) && !check_param(1, params) && check_param(2, params)) //Primeiro caso
 			{
 				if(check_ptr(2, params))
 				{
@@ -70,7 +70,7 @@ void* cria_func (void* f, DescParam params[], int n) {
 				i++;
 			}
 
-			else if(!check_param(0) && check_param(1) && !check_param(2))
+			else if(!check_param(0, params) && check_param(1, params) && !check_param(2, params))
 			{
 				if(check_ptr(2, params))
 				{
@@ -83,7 +83,7 @@ void* cria_func (void* f, DescParam params[], int n) {
 				i++;
 			}
 
-			else if(!check_param(0) && !check_param(1) && check_param(2))
+			else if(!check_param(0, params) && !check_param(1, params) && check_param(2, params))
 			{
 				if(check_ptr(2, params))
 				{
@@ -96,7 +96,7 @@ void* cria_func (void* f, DescParam params[], int n) {
 				i++;
 			}
 
-			else if(!check_param(0) && check_param(1) && check_param(2))
+			else if(!check_param(0, params) && check_param(1, params) && check_param(2, params))
 			{
 				if(check_ptr(2, params))
 				{
