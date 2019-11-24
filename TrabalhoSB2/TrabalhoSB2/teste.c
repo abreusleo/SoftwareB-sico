@@ -11,19 +11,19 @@ void libera_func(void *func) {
 	free(func);	
 }
 
-bool check_ptr(int i, DescParam * params)
+int check_ptr(int i, DescParam * params)
 {
 	return params[i].tipo_val == PTR_PAR;
 }
 
-bool check_param(int i, DescParam * params)
+int check_param(int i, DescParam * params)
 {
 	return params[i].orig_val == PARAM;
 }
 
 void* cria_func (void* f, DescParam params[], int n) {
 	
-	unsigned char codigo = (unsigned char *)malloc(1024); //WIP
+	unsigned char* codigo = (unsigned char *)malloc(1024); //WIP
 	
 	unsigned char alinhaPilha[4] = {0x55, 0x48, 0x89, 0xe5}; //alinhamento da pilha dando push em %rbp e depois movendo %rsp para %rbp
 	unsigned char leave[2] = {0xc9, 0xc3}; //array contendo o leave e ret
