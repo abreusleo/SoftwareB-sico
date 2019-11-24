@@ -11,7 +11,7 @@ void libera_func(void *func) {
 	free(func);	
 }
 
-bool check_ptr(int i)
+bool check_ptr(int i, DescParam * params)
 {
 	return params[i].tipo_val == PTR_PAR;
 }
@@ -43,7 +43,7 @@ void* cria_func (void* f, DescParam params[], int n) {
 		case(2):
 			if(!check_param(0) && check_param(1)) //Primeiro parametro Amarrado e o segundo não Amarrado
 			{
-				if(check_ptr(1))
+				if(check_ptr(1, params))
 				{
 					codigo[i] = 0x48;
 					i++;
@@ -59,7 +59,7 @@ void* cria_func (void* f, DescParam params[], int n) {
 		case(3):
 			if(check_param(0) && !check_param(1) && check_param(2)) //Primeiro caso
 			{
-				if(check_ptr(2))
+				if(check_ptr(2, params))
 				{
 					codigo[i] = 0x48;
 					i++;
@@ -72,7 +72,7 @@ void* cria_func (void* f, DescParam params[], int n) {
 
 			else if(!check_param(0) && check_param(1) && !check_param(2))
 			{
-				if(check_ptr(2))
+				if(check_ptr(2, params))
 				{
 					codigo[i] = 0x48;
 					i++;
@@ -85,7 +85,7 @@ void* cria_func (void* f, DescParam params[], int n) {
 
 			else if(!check_param(0) && !check_param(1) && check_param(2))
 			{
-				if(check_ptr(2))
+				if(check_ptr(2, params))
 				{
 					codigo[i] = 0x48;
 					i++;
@@ -98,7 +98,7 @@ void* cria_func (void* f, DescParam params[], int n) {
 
 			else if(!check_param(0) && check_param(1) && check_param(2))
 			{
-				if(check_ptr(2))
+				if(check_ptr(2, params))
 				{
 					codigo[i] = 0x48;
 					i++;
@@ -108,7 +108,7 @@ void* cria_func (void* f, DescParam params[], int n) {
 				codigo[i] = 0xf2;
 				i++;
 
-				if(check_ptr(1))
+				if(check_ptr(1, params))
 				{
 					codigo[i] = 0x48;
 					i++;
